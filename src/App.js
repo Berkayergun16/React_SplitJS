@@ -8,6 +8,8 @@ import { useGetUsersQuery } from "./generated/graphql.tsx";
 function App() {
   const { data, loading, error, refetch } = useGetUsersQuery({});
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :</p>;
 
   
   
