@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useGetUsersQuery } from "./generated/graphql.tsx";
 
 function App() {
+  const { data, loading, error, refetch } = useGetUsersQuery({});
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error! </div>;
+  }
+console.log(data)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {refetch && <button onClick={() => refetch()}>Refetch</button>}
+     
     </div>
   );
 }
