@@ -9,11 +9,7 @@ function App() {
   const { data, loading, error, refetch } = useGetUsersQuery({});
 
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }else if(error){
-    return <div>Error</div>
-  }
+  
   
   return (
     <div>
