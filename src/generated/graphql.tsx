@@ -13,6 +13,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
+  Long: any;
 };
 
 export type Query = {
@@ -22,6 +24,7 @@ export type Query = {
 
 export type User = {
   __typename?: 'User';
+  id: Scalars['Long'];
   name?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
@@ -31,13 +34,15 @@ export type User = {
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', name?: string | null, username?: string | null, password?: string | null } | null> | null };
+export type GetUsersQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, name?: string | null, surname?: string | null, username?: string | null, password?: string | null } | null> | null };
 
 
 export const GetUsersDocument = gql`
     query GetUsers {
   users {
+    id
     name
+    surname
     username
     password
   }

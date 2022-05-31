@@ -1,7 +1,9 @@
-query GetUsers{
-users {
-  name
-  username
-  password
-}
+query GetUsers {
+  users {
+    id
+    name
+    surname
+    username
+    password
+  }
 }

@@ -1,18 +1,24 @@
+//* Pages
+import Dashboard from "Pages/Dashboard";
+import Login from "Pages/Login";
+
+//* Graphql
 import { useGetUsersQuery } from "./generated/graphql.tsx";
 
 function App() {
   const { data, loading, error, refetch } = useGetUsersQuery({});
+
+
   if (loading) {
     return <div>Loading...</div>;
+  }else if(error){
+    return <div>Error</div>
   }
-  if (error) {
-    return <div>Error! </div>;
-  }
-console.log(data)
+  
   return (
-    <div className="App">
-      {refetch && <button onClick={() => refetch()}>Refetch</button>}
-     
+    <div>
+      <Dashboard  />
+     {/* <Login data={data} /> */}
     </div>
   );
 }
