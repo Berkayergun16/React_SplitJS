@@ -11,19 +11,38 @@ import {
   import { bridge as schema } from "./Schema";
 
 
-const AddUser = () => {
+const AddUser = ({refetch}) => {
     const [addUserMutation] = useAddUserMutation({ });
+
+    const handleSubmit  = (model) => {
+      
+      addUserMutation({
+        variables: {
+          prmUser: model,
+        },
+      }).then((res) => {
+        res.data.addUser.resultType === "SUC" ? alert("User added successfully") : alert(res.data.addUser.messageText);
+        refetch();
+      })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+
   return (
-    <div>
-        <AutoForm schema={schema} onChangeModel={(model)=>console.log(model)}>
-            <HiddenField name="id" value={0}/>
-            <AutoField name="name" />
-            <AutoField name="surname" />
-            <AutoField name="username" />
-            <AutoField name="password" />
-            <SubmitField value="Submit" />
-            <ErrorsField />
-            </AutoForm>
+    <div className='p-8'>
+      {
+        refetch && <AutoForm schema={schema}  onSubmit={handleSubmit}>
+        <HiddenField name="id" value={0}/>
+        <AutoField name="name" />
+        <AutoField name="surname" />
+        <AutoField name="username" />
+        <AutoField name="password" />
+        <SubmitField value="Submit" label={"Add"} />
+        <ErrorsField />
+        </AutoForm>
+      }
+       
     </div>
   )
 }

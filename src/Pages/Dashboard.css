@@ -1,42 +1,23 @@
-.split {
-    display: flex;
-    flex-direction: row;
-}
-
 .gutter {
     background-color: #eee;
     background-repeat: no-repeat;
     background-position: 50%;
 }
+
 .gutter.gutter-vertical {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
     cursor: row-resize;
+    background-color: grey;
 }
+
 .gutter.gutter-horizontal {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
     cursor: col-resize;
+    background-color: grey;
 }
 
-.grid {
-    display: grid;
-    grid-template-rows: 1fr 10px 1fr;
-    grid-template-columns: 1fr 10px 1fr;
-}
-
-.gutter-col {
-    grid-row: 1/-1;
-    cursor: col-resize;
-}
-
-.gutter-col-1 {
-    grid-column: 2;
-}
-
-.gutter-row {
-    grid-column: 1/-1;
-    cursor: row-resize;
-}
-
-.gutter-row-1 {
-    grid-row: 2;
+.split-horizontal {
+    display: flex;
+    flex-direction: row;
+    height: 100%
 }
