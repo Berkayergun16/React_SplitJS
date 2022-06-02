@@ -1,22 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 const Settings = () => {
-  const draggable = useSelector(state => state.drag);
-  console.log(draggable)
+  const drag = useSelector((state) => state.drag);
+  const entries = Object.entries(drag);
   return (
-    <div className='bg-amber-300'>
-        <div >
-         
-            <h1>asdsad</h1>
-            <h1>Settings</h1>
-            <h1>Settings</h1>
-            <h1>Settings</h1>
-            <h1>Settings</h1>
-            <h1>Settings</h1>
-            <h1>Settings</h1>
-        </div>
+    <div style={{ height: "100%", width: "100%" }} className="bg-amber-300 ">
+      <div className="items-center justify-center flex flex-col">
+        <h1 className="font-bold text-lg">Settings</h1>
+        {entries.map(([key, value]) => {
+          const s = key.split("_").filter((x) => x !== "drag");
+          return (
+            <div>
+              <p className="font-bold">{s}</p>
+              <p>{value + " "}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Settings
+export default Settings;

@@ -7,8 +7,8 @@ import DeleteSharpIcon from '@mui/icons-material/DeleteSharp';
 import CachedIcon from '@mui/icons-material/Cached';
 
 
-const UsersTable = ({data, refetch}) => {
-  //  const { data, loading, error, refetch } = useGetUsersQuery({});
+const UsersTable = () => {
+   const { data, loading, error, refetch } = useGetUsersQuery({});
   const [deleteUserMutation] = useDeleteUserMutation({});
   const [selectionModel, setSelectionModel] = React.useState([]);
   const [rows, setRows] = React.useState(data?.users);
@@ -28,8 +28,8 @@ const UsersTable = ({data, refetch}) => {
         return (
           <IconButton
             onClick={() => {
-              // const selectedIDs = new Set(selectionModel);
-              //  setRows((r) => r.filter((x) => !selectedIDs.has(x.id)));
+               const selectedIDs = new Set(selectionModel);
+               setRows((r) => r.filter((x) => !selectedIDs.has(x.id)));
             deleteUserMutation({
               variables: {
   
@@ -57,7 +57,7 @@ const UsersTable = ({data, refetch}) => {
         return (
           <IconButton
             onClick={() => {
-           
+              
             }}
           >
             <CachedIcon />
@@ -68,16 +68,13 @@ const UsersTable = ({data, refetch}) => {
   ];
   
  
-  const handleDelete = () => {
-    console.log(selectionModel[0]);
-   
-  }
     
   return (
-    <div style={{ height: 350, width: "100%" }} className="p-10">
+    <div style={{ height: "100%", width: "100%" }} className="">
      
         {
-          refetch && <DataGrid
+          refetch() &&
+           <DataGrid
           rows={rows}
           onSelectionModelChange={(ids) => {
             setSelectionModel(ids);

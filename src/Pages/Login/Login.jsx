@@ -6,31 +6,30 @@ import {
   ErrorsField,
 } from "uniforms-material";
 import { bridge as schema } from "./LoginSchema";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import Loading from "Components/Loading";
+import Logo from "Components/Logo/Logo";
 
-
-
-
-const Login = ({data,refetch}) => {
-
+const Login = ({ data, refetch }) => {
   const navigate = useNavigate();
 
   const handleLogin = (model) => {
+   
     const userCheck = data?.users.filter((user) => {
-      if (user.username === model.username && user.password === model.password) {
+      if (
+        user.username === model.username &&
+        user.password === model.password
+      ) {
         localStorage.setItem("user", JSON.stringify(user));
         return true;
       }
       return false;
-    })
-    console.log(userCheck);
+    });
+    console.log(data?.users);
     if (userCheck.length > 0) {
       navigate("/dashboard");
     }
-   
-  }
-
+  };
 
   return (
     <div className="grid  h-screen w-full  bg-gray-800">
@@ -39,23 +38,23 @@ const Login = ({data,refetch}) => {
       </div>
       <div className="p-12">
         <div className="max-w-[400px] w-full mx-auto bg-slate-400 p-12 px-12 justify-center rounded-lg">
-          <div className="m-5">
-            <img
-              className="mb-5 bg-cover bg-center"
-              src={require("Assets/images/sitelogo.png")}
-            />
-          </div>
+          <Logo />
 
           <div className="flex flex-col">
-            <AutoForm schema={schema} onSubmit={handleLogin} >
-              <ErrorsField />
-              <AutoField name={"username"} />
-              <AutoField name={"password"} type={"password"} />
-              <div>
-                <SubmitField className="w-full" />
-              </div>
-            </AutoForm>
+            {refetch && (
+              <AutoForm schema={schema} onSubmit={handleLogin}>
+                <ErrorsField />
+                <AutoField name={"username"} />
+                <AutoField name={"password"} type={"password"} />
+                <div>
+                  <SubmitField className="w-full" />
+                </div>
+              </AutoForm>
+            )}
           </div>
+          <Link className="text-center font-bold" to={"register"}>
+            <p>Register</p>
+          </Link>
         </div>
       </div>
     </div>
