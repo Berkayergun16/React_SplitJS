@@ -1,11 +1,11 @@
 import React from "react";
 import Lottie from "lottie-react";
-import LoadingAnimation from "../Assets/Animations/Loading.json";
+import ErrorAnimation from "../../Assets/Animations/Error.json";
 
-const Loading = () => {
+const Error = () => {
   return (
     <Lottie
-      animationData={LoadingAnimation}
+      animationData={ErrorAnimation}
       loop={true}
       autoPlay={true}
       style={{ width: "30%", marginLeft: "35%", marginTop: "8%" }}
@@ -13,4 +13,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default Error;

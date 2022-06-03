@@ -1,23 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const LocalStrogeQuery = (text) => {
+  return localStorage.getItem(text)
+    ? JSON.parse(localStorage.getItem(text))
+    : [50, 50];
+};
+
 export const DragSlice = createSlice({
   name: "drag",
   initialState: {
-    drag_top: [
-      localStorage.getItem("split-sizes")
-        ? JSON.parse(localStorage.getItem("split-sizes"))
-        : [50, 50],
-    ],
-    drag_bottom: [
-      localStorage.getItem("split-sizes-bottom")
-        ? JSON.parse(localStorage.getItem("split-sizes-bottom"))
-        : [50, 50],
-    ],
-    drag_vertical: [
-      localStorage.getItem("split-sizes-vertical")
-        ? JSON.parse(localStorage.getItem("split-sizes-vertical"))
-        : [50, 50],
-    ],
+    drag_top: [LocalStrogeQuery("split-sizes")],
+    drag_bottom: [LocalStrogeQuery("split-sizes-bottom")],
+    drag_vertical: [LocalStrogeQuery("split-sizes-vertical")],
   },
   reducers: {
     setDrag: (state, action) => {
@@ -27,10 +21,10 @@ export const DragSlice = createSlice({
       state.drag_bottom = action.payload;
     },
     setDragVertical: (state, action) => {
-        state.drag_vertical = action.payload;
-    }
+      state.drag_vertical = action.payload;
+    },
   },
 });
 
-export const { setDrag, setDragBottom ,setDragVertical} = DragSlice.actions;
+export const { setDrag, setDragBottom, setDragVertical } = DragSlice.actions;
 export default DragSlice.reducer;

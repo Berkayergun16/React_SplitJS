@@ -18,6 +18,18 @@ const schemaExtras = {};
 
 const schemaValidator = (model) => {
   const details = [];
+  if (!model.name) {
+    details.push({ name: "name", type: "required" });
+  }
+  if (!model.surname) {
+    details.push({ name: "surname", type: "required" });
+  }
+  if (!model.username) {
+    details.push({ name: "username", type: "required" });
+  }
+  if (!model.password) {
+    details.push({ name: "password", type: "required" });
+  }
 
   return details.length ? { details } : null;
 };

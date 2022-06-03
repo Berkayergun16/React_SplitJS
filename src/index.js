@@ -5,6 +5,7 @@ import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from './apolloClient.ts';
 import { BrowserRouter } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import { store } from 'store/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
